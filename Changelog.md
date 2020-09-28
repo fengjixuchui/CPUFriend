@@ -1,5 +1,11 @@
 CPUFriend Changelog
 ===================
+#### v1.2.2
+- Added MacKernelSDK with Xcode 12 compatibility
+
+#### v1.2.1
+- Added constants for 11.0 support
+
 #### v1.2.0
 - Dropped broken AppleIntelMCEReporter prevention support
 

@@ -7,14 +7,14 @@ ssdtName="ssdt_data.dsl"
 
 function showHelp() {
 	echo -e "Usage:\n"
-	echo "-a, --acpi file Create ${kextName} with information provided by file."
-	echo "-k, --kext file Create ${ssdtName} with information provided by file."
+	echo "-a, --acpi file Create ${ssdtName} with information provided by file."
+	echo "-k, --kext file Create ${kextName} with information provided by file."
 	echo
 }
 
 function genSSDT() {
 	local src="$1"
-	local data2Hex="$(xxd -pr -u $1 | tr -d '\n' | sed 's/.\{2\}/\0x&, /g')"
+	local data2Hex=$(xxd -pr -u "$src" | tr -d '\n' | sed 's/.\{2\}/\0x&, /g')
 
 	local ifs=$IFS
 	IFS=$'\n'
@@ -68,7 +68,7 @@ EOF
 
 function genKext() {
 	local src="$1"
-	local data2B64="$(cat $1 | base64)"
+	local data2B64=$(cat "$src" | base64)
 
 	mkdir -p "${kextName}/Contents" && pushd "${kextName}/Contents" &> /dev/null
 
